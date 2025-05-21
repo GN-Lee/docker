@@ -1,0 +1,26 @@
+# 여러 컨테이너 다중 컨트롤 역할
+# 컨테이너 명령어
+# docker run -d --name nginx -p 80:80 nginx
+# docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 mysql
+# docker run -d --name redis -p 6379:6379 redis
+# docker run -d --name rabbitmq -p 5672:5672 rabbitmq
+
+services:
+  postgres:
+    image: postgres:16
+    volumes:
+      - ./databases/postgres_data:/var/lib/postgresql/data
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: teemo
+      POSTGRES_PASSWORD: qwer
+      POSTGRES_DB: auth
+
+  # teemo:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3000:3000

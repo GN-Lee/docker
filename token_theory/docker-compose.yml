@@ -1,0 +1,13 @@
+# 오케스트링[컨테이너 관리]
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: school
+    ports:
+      - 5432:5432
+    volumes:
+      - ./database/postgres_data:/var/lib/postgresql/data
+    restart: always
